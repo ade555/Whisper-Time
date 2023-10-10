@@ -69,9 +69,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication', ]
 }
 
-
-SITE_ID = 1
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -101,6 +98,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+ASGI_APPLICATION = 'core.asgi.application'
 
 
 # Database
@@ -155,4 +153,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'users.MyUser'
+AUTH_USER_MODEL = 'users.User'
+
+# Allauth configurations
+ACCOUNT_EMAIL_VERIFICATION = None
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+REST_AUTH = [
+
+]
