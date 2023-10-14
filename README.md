@@ -22,6 +22,7 @@ In addition to basic chat functionality, WhisperTime offers real-time messaging,
     - [Installation](#Installation-and-Setup)
 - [Testing](#testing)
 - [API Documentation](docs/readme.md)
+- [Databases](docs/databases.md)
 - [Technologies and Tools](#technologies-and-tools)
 - [Contributing](#contributing)
 - [License](#license)
