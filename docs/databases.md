@@ -27,6 +27,7 @@ pip install psycopg2
 ```
 
 3. Create a database for the project
+
 ![creating a new database in postgresql's pgadmin4](images/create%20new%20postgres%20db.png)
 
 4. Navigate to the settings file at `core/settings.py` and replace the database settings with the following:
