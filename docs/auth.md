@@ -26,6 +26,12 @@ The Auth APIs manage operations related to creating user accounts for the platfo
 | Field            | Type    | Description                                  |
 |------------------|---------|----------------------------------------------|
 | `id`             | int    | Unique identifier of the user.            |
+| `first_name` | str | User's first name |
+| `last_name` | str | User's last name |
+| `username` | varchar | User's unique username |
+| `email` | varchar | User's unique email identifier |
+| `password1` | varchar | User's password |
+| `password2` | varchar | Confirmation password for password1 
 
 
 ---
@@ -41,15 +47,19 @@ The Auth APIs manage operations related to creating user accounts for the platfo
 
 | Parameter | Type | Description                      | Required |
 |-----------|------|----------------------------------|----------|
+| first_name | str | User's first name | Yes |
+| last_name | str | User's last name | Yes|
 | username  | string  | Unique identifier of the user | Yes |
 | email | email | Unique email identifier of the user | Yes |
 | password1 | varchar | User's strong password | Yes|
-| password2 | varchar | Confirmation password for password1 | Yes | 
+| password2 | varchar | Confirmation password for password1 | Yes |
 
 **Request Body**:
 
 ```json
 {
+    "first_name":"John",
+    "last_name":"Doe",
     "username": "johnny",
     "email": "johndoe@gmail.com",
     "password1":  "MYpass$$",

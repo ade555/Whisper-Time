@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions
 from dj_rest_auth.registration.views import RegisterView
 
-from .models import User
+from .models import CustomUser
 from .serializers import UserSerializer
 
 class UserRegistration(RegisterView):
@@ -20,6 +20,6 @@ class UserRegistration(RegisterView):
 class UsersList(generics.ListAPIView):
     serializer_class = UserSerializer
 
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
 
     permission_classes = (permissions.AllowAny,)
