@@ -69,7 +69,15 @@ The Auth APIs manage operations related to creating user accounts for the platfo
 
 **Responses**:
 
-- `201 Created`: Successfully created an account for the user.
+- `201 Created`: Successfully created an account for the user. Returns access and refresh tokens.
+
+```json
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxOTY0NTAwLCJpYXQiOjE3MDE5NjQyMDAsImp0aSI6IjZhYjE4MTM2ZTc1MzQyNmZiMGMwYzZhMzZiMWYzYWYwIiwidXNlcl9pZCI6NH0.NVEOzKTNq8HY2O_vyHJG53mGUhMXJTJJgV0R5eTkzu4",
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwMjA1MDYwMCwiaWF0IjoxNzAxOTY0MjAwLCJqdGkiOiIwZjAxM2ExYjdhMTg0ZTBiOTNlZTRkOWJmMzA2NGEyMSIsInVzZXJfaWQiOjR9.Uc3LMDZNDGzlyiLU8RU0zTbHkcNxeyFQXa3l2rtXLDQ",
+    "message": "User successfully registered"
+}
+```
 - `400 Bad Request`: Invalid input or malformed request.
 - `500 Internal Server Error`: Unexpected server error.
 
@@ -83,8 +91,7 @@ The Auth APIs manage operations related to creating user accounts for the platfo
 
 | Parameter | Type | Description                      | Required |
 |-----------|------|----------------------------------|----------|
-| username  | string  | User's unique registered username | Yes |
-| email | email | User's registered email | Yes |
+| username  | varchar  | User's unique registered username | Yes |
 | password | varchar | User's registered password | Yes|
 
 
@@ -93,15 +100,18 @@ The Auth APIs manage operations related to creating user accounts for the platfo
 ```json
 {
     "username": "johnny",
-    "email": "johndoe@gmail.com",
     "password":  "MYpass$$"
 }
 ```
 
 **Responses**:
 
-- `201 Created`: Successfully created an account for the user.
+- `201 Created`: Successfully logs the user into the app and returns token key.
+```json
+{
+    "key": "9c85609b957a0031ef062d8e1b2399bc7cf98ff5"
+}
+```
 - `400 Bad Request`: Invalid input or malformed request.
 - `500 Internal Server Error`: Unexpected server error.
-
 ---

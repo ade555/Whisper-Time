@@ -17,11 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from users.views import UserRegistration
+from users.views import RegisterUser
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('dj_rest_auth.urls')),
-    path('accounts/signup/', UserRegistration.as_view(), name="user-registration"),
+    # path('accounts/', include('dj_rest_auth.urls')),
+    path('accounts/signup/', RegisterUser.as_view(), name="user-registration"),
     path('users/', include('users.urls'))
 ]

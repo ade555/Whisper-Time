@@ -46,17 +46,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # new
-    'django.contrib.sites',
-
     #  third party libraries
     'rest_framework',
     'rest_framework.authtoken',
-    'dj_rest_auth',
-    'allauth',
-    'allauth.account',
-    'dj_rest_auth.registration',
     'channels',
+    'rest_framework_simplejwt',
 
     # custom apps
     'users',
@@ -67,7 +61,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
         ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication', ]
+        'rest_framework_simplejwt.authentication.JWTAuthentication', ]
 }
 
 MIDDLEWARE = [
@@ -157,12 +151,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 # Allauth configurations
-ACCOUNT_EMAIL_VERIFICATION = None
+# ACCOUNT_EMAIL_VERIFICATION = None
 
-SITE_ID = 1
+# SITE_ID = 1
 
-ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_REQUIRED = True
 
-REST_AUTH = [
+# REST_AUTH = [
 
-]
+# ]
