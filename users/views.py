@@ -1,13 +1,11 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.request import Request
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.db import IntegrityError
 
 from .models import CustomUser
 from .serializers import UserSerializer
 
-class RegisterUser(generics.CreateAPIView):
+class RegisterUser(generics.GenericAPIView):
     serializer_class = UserSerializer
 
     permission_classes = (permissions.AllowAny,)

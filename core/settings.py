@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     # custom apps
     'users',
+    'whispers',
 ]
 
 REST_FRAMEWORK = {
