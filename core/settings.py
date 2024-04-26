@@ -149,14 +149,3 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.CustomUser'
-
-# Allauth configurations
-# ACCOUNT_EMAIL_VERIFICATION = None
-
-# SITE_ID = 1
-
-# ACCOUNT_EMAIL_REQUIRED = True
-
-# REST_AUTH = [
-
-# ]

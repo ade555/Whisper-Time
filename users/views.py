@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
-# from dj_rest_auth.registration.views import RegisterView
+from rest_framework.request import Request
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.db import IntegrityError
 
@@ -12,24 +12,20 @@ class RegisterUser(generics.CreateAPIView):
 
     permission_classes = (permissions.AllowAny,)
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        try:
-            user = self.perform_create(serializer)
-        except IntegrityError as e:
-            return Response({'error': 'Email or username is already in use.'}, status=status.HTTP_400_BAD_REQUEST)
-
-        refresh = RefreshToken.for_user(user)
-        access_token = str(refresh.access_token)
-        refresh_token = str(refresh)
-        return Response({'access_token': access_token, 'refresh': refresh_token, 'message': 'User successfully registered'}, status=status.HTTP_201_CREATED)
-
-    def perform_create(self, serializer):
-        user = serializer.save()
-
-        return user
+    def post(self, request:Request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = {
+                "message":"successful",
+                "data": serializer.data
+            }
+            return Response(data=response, status=status.HTTP_201_CREATED)
+        response = {
+            "message":"failed",
+            "info": serializer.errors
+        }
+        return Response(data=response, status=status.HTTP_400_BAD_REQUEST)
 
 class UsersList(generics.ListAPIView):
     serializer_class = UserSerializer
