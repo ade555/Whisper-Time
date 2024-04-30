@@ -8,24 +8,26 @@ class MessageSerializer(serializers.ModelSerializer):
         exclude = ['related_conversation']
 
 
-class ConversationSerializer(serializers.ModelSerializerd):
+class ConversationSerializer(serializers.ModelSerializer):
     convo_starter = UserSerializer()
-    conver_receiver = UserSerializer()
+    convo_receiver = UserSerializer()
     messages = MessageSerializer(many=True)
+    
     class Meta:
         model = Conversation
-        fields = ["__all__"]
+        fields = ["convo_starter", "convo_receiver", "messages"]
 
 
 class ListConversationSerializer(serializers.ModelSerializer):
     convo_starter = UserSerializer()
-    conver_receiver = UserSerializer()
+    convo_receiver = UserSerializer()
     last_message = serializers.SerializerMethodField()
 
     class Meta:
         model = Conversation
-        fields = ['convo_starter', 'convo_receiver', 'last_message']
+        fields = "__all__"
 
     def get_last_message(self, instance):
         last_msg = instance.messages.first()
-        return MessageSerializer(last_msg)
+        print(last_msg)
+        return MessageSerializer(instance=last_msg).data
