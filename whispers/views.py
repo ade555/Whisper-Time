@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.request import Request
+from rest_framework.decorators import api_view
 
 from django.db.models import Q
 from django.contrib.auth import get_user_model
@@ -51,3 +52,12 @@ class ListAllConversations(generics.GenericAPIView):
         conversations = Conversation.objects.filter(Q(convo_starter=request.user) | Q(convo_receiver=request.user))
         serializer = ListConversationSerializer(instance=conversations, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_conversation(request:Request, id):
+    conversation = Conversation.objects.filter(id=id)
+    if not conversation.exists():
+        return Response({'message': 'Conversation does not exist'})
+    else:
+        serializer = ConversationSerializer(instance=conversation[0])
+        return Response(serializer.data)
