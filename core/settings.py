@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if(len(sys.argv)>= 2 and sys.argv[1]=='runserver'):
@@ -64,7 +64,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
         ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication', ]
+        'rest_framework_simplejwt.authentication.JWTAuthentication', 
+        ]
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -188,3 +189,5 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
+
+TICKET_EXPIRE_TIME=os.getenv("TICKET_EXPIRE_TIME")
